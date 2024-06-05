@@ -16,7 +16,7 @@ object Config {
   /**
    * http port. default is 9966
    */
-  val HTTP_PORT = Integer.getInteger("httpPort", 9966).toInt
+  val HTTP_PORT = Integer.getInteger("httpPort", 8080).toInt
 
   /**
    * Default think time in seconds.
@@ -41,10 +41,10 @@ object Config {
    */
   val HTTP_PROTOCOL = http
   .acceptHeader("text/html, */*; q=0.01")
-    .baseURL(serverHttpUrl())
+    .baseUrl(serverHttpUrl())
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("en-us,en;q=0.8,fr;q=0.5,fr-fr;q=0.3")
-    .connection("keep-alive")
+    .connectionHeader("keep-alive")
     .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:30.0) Gecko/20100101 Firefox/30.0")
 
   def serverHttpUrl(): String = {

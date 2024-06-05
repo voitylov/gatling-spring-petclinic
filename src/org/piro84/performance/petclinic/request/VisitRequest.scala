@@ -10,21 +10,20 @@ import io.gatling.http.check.HttpCheck
 object VisitRequest {
 
   def extractIdFromUrl(): String = {
-    val urlElements="${visitLink}".split("/")
-    urlElements.get(urlElements.length)
+    val urlElements="/${visitLink}".split("/")
+    urlElements(urlElements.length - 1)
   }
   
   
   val NavigateToNewVisitForm = {
     exec(http("Navigate to the new visit form")
-      .get("${visitLink}"))
+      .get("/owners/${visitLink}"))
   }
 
   val AddNewVisit = {
     exec(http("Add a new visit")
-      .post("${visitLink}")
+      .post("/owners/${visitLink}")
       .formParam("date", "2015/09/09")
-      .formParam("description", "test")
-      .formParam("petId", extractIdFromUrl))
+      .formParam("description", "test"))
   }
 }

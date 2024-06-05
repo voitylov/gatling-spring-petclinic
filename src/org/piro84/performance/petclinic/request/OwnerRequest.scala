@@ -19,20 +19,20 @@ object OwnerRequest {
    
   val ShowLanding= {
     exec(http("Navigate to owners page")
-      .get("/petclinic/owners/find.html"))
+      .get("/owners/find"))
   }
     
   val ListAllByLastName={
     exec(http("List owners by last name")
-      .get("/petclinic/owners.html?lastName=")
-      .check(selectRandomOwner)  
+      .get("/owners?lastName=")
+      .check(selectRandomOwner())
     )
   }
   
   val GetRandomOwner = {
 		  exec(http("Get a random owner")
 				  .get("${ownerLink}")
-          .check(randomVisitForm))
+          .check(randomVisitForm()))
           
   }
 }
